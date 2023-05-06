@@ -34,18 +34,21 @@ console.log(x[0] === y[0]) // true
 ***********************************************************************/
 
 
-function deepDup(arr,currIndex = 0, duped = []) {
-  if (duped.length === arr.length) return duped;
-      duped.push(arr[currIndex])
-      return deepDup(arr, currIndex + 1 , duped)
+function deepDup(arr) {
+
+const duped = [];
+
+  for (let index = 0; index < arr.length; index++) {
+    let el = arr[index];
+    if (Array.isArray(el)){
+      duped.push(deepDup(el))
+    } else {
+      duped[index] = arr[index];
+    }
+
+  }
+  return duped;
 }
-
-let arr = [[1], [2, [3]]];
-console.log(duped = deepDup(arr)); // [[1], [2, [3]]]
-console.log(arr[0] === duped[0]) // false
-console.log(arr[1] === duped[1]) // false
-console.log(arr[1][1] === duped[1][1]) // false
-
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
