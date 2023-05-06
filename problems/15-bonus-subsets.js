@@ -17,9 +17,22 @@ Hint: For subsets([1, 2, 3]), there are two kinds of subsets:
 ***********************************************************************/
 
 const subsets = (arr) => {
-  // Your code here
-}
 
+  if (arr.length === 0) return [[]];
+
+  const startEle = arr[0];
+  const rest = subsets(arr.slice(1));
+  //console.log(rest);
+  const start = rest.map(ele => [startEle, ...ele]);
+  //console.log("start:", start);
+  const sub = rest;
+  return ([...start, ...sub]);
+  
+}
+console.log(subsets([])) // [[]]
+console.log(subsets([1])) // [[], [1]]
+console.log(subsets([1, 2])) // [[], [1], [2], [1, 2]]
+console.log(subsets([1, 2, 3])) // [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
   module.exports = subsets;
